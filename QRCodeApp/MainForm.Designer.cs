@@ -39,8 +39,6 @@
             this.fbd = new System.Windows.Forms.FolderBrowserDialog();
             this.label2 = new System.Windows.Forms.Label();
             this.txt_end = new System.Windows.Forms.TextBox();
-            this.rbtn_only_code = new System.Windows.Forms.RadioButton();
-            this.rbtn_image_code = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // btn_create
@@ -130,37 +128,11 @@
             this.txt_end.Size = new System.Drawing.Size(121, 21);
             this.txt_end.TabIndex = 11;
             // 
-            // rbtn_only_code
-            // 
-            this.rbtn_only_code.AutoSize = true;
-            this.rbtn_only_code.Location = new System.Drawing.Point(15, 189);
-            this.rbtn_only_code.Name = "rbtn_only_code";
-            this.rbtn_only_code.Size = new System.Drawing.Size(83, 16);
-            this.rbtn_only_code.TabIndex = 12;
-            this.rbtn_only_code.Text = "仅生成编号";
-            this.rbtn_only_code.UseVisualStyleBackColor = true;
-            this.rbtn_only_code.CheckedChanged += new System.EventHandler(this.rbtn_only_code_CheckedChanged);
-            // 
-            // rbtn_image_code
-            // 
-            this.rbtn_image_code.AutoSize = true;
-            this.rbtn_image_code.Checked = true;
-            this.rbtn_image_code.Location = new System.Drawing.Point(142, 190);
-            this.rbtn_image_code.Name = "rbtn_image_code";
-            this.rbtn_image_code.Size = new System.Drawing.Size(107, 16);
-            this.rbtn_image_code.TabIndex = 12;
-            this.rbtn_image_code.TabStop = true;
-            this.rbtn_image_code.Text = "生成图像及编号";
-            this.rbtn_image_code.UseVisualStyleBackColor = true;
-            this.rbtn_image_code.CheckedChanged += new System.EventHandler(this.rbtn_image_code_CheckedChanged);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(462, 221);
-            this.Controls.Add(this.rbtn_image_code);
-            this.Controls.Add(this.rbtn_only_code);
             this.Controls.Add(this.txt_end);
             this.Controls.Add(this.btn_select_path);
             this.Controls.Add(this.txt_output);
@@ -196,8 +168,6 @@
         private System.Windows.Forms.FolderBrowserDialog fbd;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txt_end;
-        private System.Windows.Forms.RadioButton rbtn_only_code;
-        private System.Windows.Forms.RadioButton rbtn_image_code;
     }
 }
 

@@ -2,7 +2,6 @@
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
-using System.IO;
 using System.Windows.Forms;
 using static QRCoder.PayloadGenerator;
 
@@ -18,8 +17,8 @@ namespace QRCodeApp
 
         private long start, end;
         private string outputPath = string.Empty;
-        private Bitmap image;
         private Graphics graphic;
+        private Bitmap bitmap;
         private QRCodeGenerator qrGenerator;
         private string fileName; 
        
@@ -38,12 +37,45 @@ namespace QRCodeApp
             return qrCodeAsBitmap;
         }
 
+        private void InitGraphic(Bitmap qrImage)
+        {
+            bitmap = new Bitmap(qrImage.Width + 30, qrImage.Height + 50);
+            graphic = Graphics.FromImage(bitmap);
+            graphic.FillRegion(Brushes.White, new Region());
+        }
+
+        private void PrintQrImage(Bitmap qrImage, int index, string code)
+        {
+            if (null == graphic)
+            {
+                InitGraphic(qrImage);
+            }
+            graphic.FillRegion(Brushes.White, new Region());
+            graphic.DrawImage(qrImage, 15 , 15 );
+            graphic.DrawString(code, font, brush, 15, qrImage.Height+25);
+        }
+
+        
+
+        private void PrintQrImage(Bitmap qrImage, int index, string code,string suffix)
+        {
+            if (null == graphic)
+            {
+                InitGraphic(qrImage);
+            }
+            graphic.FillRegion(Brushes.White, new Region());
+            graphic.DrawImage(qrImage, 15, 15);
+            graphic.DrawString(string.Format("{0}-{1}",code,suffix.Substring(5)), font, brush, 15, qrImage.Height + 25);
+        }
+
         private void PrintQrImage(Bitmap qrImage, int index)
         {
-            var x = index % 10;
-            var y = index / 10;
-
-            graphic.DrawImage(qrImage, x * 200 + 25, y * 220 + 25);
+            if (null == graphic)
+            {
+                InitGraphic(qrImage);
+            }
+            graphic.FillRegion(Brushes.White, new Region());
+            graphic.DrawImage(qrImage, 15, 15);
         }
         private void PrintCode(int index,string code)
         {
@@ -52,28 +84,9 @@ namespace QRCodeApp
 
             graphic.DrawString(code, font,brush, x * 200 + 25, y * 220 + 215);
         }
-        private void PrintQrImage(Bitmap qrImage, int index,string code)
-        {
-            PrintQrImage(qrImage, index);
-            PrintCode(index, code);
-        }
 
         private string DesCode(string data)
         {
-            //sb.Clear();
-            //ms = new MemoryStream();
-            //byte[] inputByteArray = Encoding.GetEncoding("UTF-8").GetBytes(data);
-            //cs = new CryptoStream(ms, des.CreateEncryptor(), CryptoStreamMode.Write);
-            //cs.Write(inputByteArray, 0, inputByteArray.Length);
-            //cs.FlushFinalBlock();
-
-            //byte[] array = ms.ToArray();
-            //for (int i = 0; i < array.Length; i++)
-            //{
-            //    byte b = array[i];
-            //    sb.AppendFormat("{0:X2}", b);
-            //}
-            //return sb.ToString();
             return EnCoder.EnCoder.Encode(data);
         }
 
@@ -95,55 +108,37 @@ namespace QRCodeApp
                     return;
                 }
             }
-                
+
 
             fileName = DateTime.Now.ToString("yyyyMMddHHmmss");
-            var str = this.Text;
-            this.Text = "正在生成.....";
+            var str = Text;
+            Text = "正在生成.....";
             btn_create.Enabled = false;
-            image = new Bitmap(2025, 2225);
-            graphic = Graphics.FromImage(image);
-            graphic.FillRegion(Brushes.White, new Region());
             qrGenerator = new QRCodeGenerator();
-
             
-
-            FileStream fs = File.Create(string.Format(@"{0}\{1}.txt", outputPath, fileName));
-            StreamWriter writer = new StreamWriter(fs);
             end = long.Parse(txt_end.Text);
             var length = end - start + 1;
             var url = txt_url.Text;
 
-            if (rbtn_image_code.Checked)
-            {
-                for (int i = 0; i < length; i++)
-                {
-                    string code = (start + i).ToString("D10");
 
-                    var desCode = DesCode(code);
-                    var qr = CreateQrImage(string.Format("{0}{1}", url, desCode));
-                    PrintQrImage(qr, i, desCode);
-                    qr.Dispose();
-                    writer.WriteLine(string.Format("{0}：\t{1}->{2}", i + 1, desCode, code));
-                }
-            }
-            else
+            for (int i = 0; i < length; i++)
             {
-                for (int i = 0; i < length; i++)
-                {
-                    string code = (start + i).ToString("D10");
-                    var desCode = DesCode(code);
-                    writer.WriteLine(string.Format("{0}-{1}", code, desCode));
-                }
-            }
-            writer.Flush();
-            writer.Close();
-            fs.Close();
+                string code = (start + i).ToString("D10");
 
-            graphic.Dispose();
-            image.Save(string.Format(@"{0}\{1}.jpg", outputPath , fileName), ImageFormat.Jpeg);
-            image.Dispose();
-            this.Text = str;
+                var desCode = DesCode(code);
+                var qr = CreateQrImage(string.Format("{0}{1}", url, desCode));
+                PrintQrImage(qr, i, desCode, code);
+                bitmap.Save(string.Format(@"{0}\{1}.jpg", outputPath, code), ImageFormat.Jpeg);
+                qr.Dispose();
+            }
+
+            if (null != graphic)
+            {
+                bitmap.Dispose();
+                graphic.Dispose();
+            }
+
+            Text = str;
             btn_create.Enabled = true;
         }
 
