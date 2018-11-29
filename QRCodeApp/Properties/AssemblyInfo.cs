@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("QRCodeApp")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("锅炉控制器二维码生成程序")]
+[assembly: AssemblyDescription("锅炉控制器二维码生成程序")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("QRCodeApp")]
+[assembly: AssemblyCompany("山东简洁软件")]
+[assembly: AssemblyProduct("锅炉控制器二维码生成程序")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

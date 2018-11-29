@@ -14,6 +14,7 @@ namespace QRCodeApp
             InitializeComponent();
             
         }
+        public const string APP_DOWN_URL = "http://www.sdcsoft.com.cn/app/gl/gl.apk?id=";
 
         private long start, end;
         private string outputPath = string.Empty;
@@ -65,7 +66,7 @@ namespace QRCodeApp
             }
             graphic.FillRegion(Brushes.White, new Region());
             graphic.DrawImage(qrImage, 15, 15);
-            graphic.DrawString(string.Format("{0}-{1}",code,suffix.Substring(5)), font, brush, 15, qrImage.Height + 25);
+            graphic.DrawString(code, font, brush, 15, qrImage.Height + 25);
         }
 
         private void PrintQrImage(Bitmap qrImage, int index)
@@ -87,7 +88,7 @@ namespace QRCodeApp
 
         private string DesCode(string data)
         {
-            return EnCoder.EnCoder.Encode(data);
+            return data;
         }
 
         private void btn_create_Click(object sender, EventArgs e)
@@ -98,16 +99,7 @@ namespace QRCodeApp
                 return;
             }
 
-            if (txt_url.Enabled)
-            {
-                var result = MessageBox.Show("APP下载地址确认正确吗？", "确认", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (result == DialogResult.No)
-                {
-                    txt_url.Focus();
-                    txt_url.SelectAll();
-                    return;
-                }
-            }
+            
 
 
             fileName = DateTime.Now.ToString("yyyyMMddHHmmss");
@@ -118,15 +110,13 @@ namespace QRCodeApp
             
             end = long.Parse(txt_end.Text);
             var length = end - start + 1;
-            var url = txt_url.Text;
-
-
+            
             for (int i = 0; i < length; i++)
             {
                 string code = (start + i).ToString("D10");
 
                 var desCode = DesCode(code);
-                var qr = CreateQrImage(string.Format("{0}{1}", url, desCode));
+                var qr = CreateQrImage(string.Format("{0}{1}", APP_DOWN_URL, desCode));
                 PrintQrImage(qr, i, desCode, code);
                 bitmap.Save(string.Format(@"{0}\{1}.jpg", outputPath, code), ImageFormat.Jpeg);
                 qr.Dispose();
@@ -156,7 +146,6 @@ namespace QRCodeApp
             outputPath = Application.StartupPath;
             font = new Font("Arial", 14);
             brush = new SolidBrush(Color.Black);
-            txt_url.Text = "http://www.sdcsoft.com.cn/app/gl/gl.apk?id=";
         }
 
        
@@ -172,12 +161,10 @@ namespace QRCodeApp
 
         private void rbtn_only_code_CheckedChanged(object sender, EventArgs e)
         {
-            txt_url.Enabled = false;
         }
 
         private void rbtn_image_code_CheckedChanged(object sender, EventArgs e)
         {
-            txt_url.Enabled = true;
         }
     }
 }

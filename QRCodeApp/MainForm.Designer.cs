@@ -28,11 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.btn_create = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txt_start = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txt_url = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txt_output = new System.Windows.Forms.TextBox();
             this.btn_select_path = new System.Windows.Forms.Button();
@@ -43,7 +42,7 @@
             // 
             // btn_create
             // 
-            this.btn_create.Location = new System.Drawing.Point(375, 186);
+            this.btn_create.Location = new System.Drawing.Point(375, 126);
             this.btn_create.Name = "btn_create";
             this.btn_create.Size = new System.Drawing.Size(75, 23);
             this.btn_create.TabIndex = 0;
@@ -69,26 +68,10 @@
             this.txt_start.TabIndex = 3;
             this.txt_start.TextChanged += new System.EventHandler(this.txt_start_TextChanged);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 64);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 12);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "APP下载地址";
-            // 
-            // txt_url
-            // 
-            this.txt_url.Location = new System.Drawing.Point(90, 61);
-            this.txt_url.Name = "txt_url";
-            this.txt_url.Size = new System.Drawing.Size(360, 21);
-            this.txt_url.TabIndex = 6;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(13, 118);
+            this.label4.Location = new System.Drawing.Point(13, 58);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 7;
@@ -97,14 +80,14 @@
             // txt_output
             // 
             this.txt_output.Enabled = false;
-            this.txt_output.Location = new System.Drawing.Point(90, 113);
+            this.txt_output.Location = new System.Drawing.Point(90, 53);
             this.txt_output.Name = "txt_output";
             this.txt_output.Size = new System.Drawing.Size(273, 21);
             this.txt_output.TabIndex = 8;
             // 
             // btn_select_path
             // 
-            this.btn_select_path.Location = new System.Drawing.Point(375, 113);
+            this.btn_select_path.Location = new System.Drawing.Point(375, 53);
             this.btn_select_path.Name = "btn_select_path";
             this.btn_select_path.Size = new System.Drawing.Size(75, 23);
             this.btn_select_path.TabIndex = 9;
@@ -132,18 +115,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(462, 221);
+            this.ClientSize = new System.Drawing.Size(462, 159);
             this.Controls.Add(this.txt_end);
             this.Controls.Add(this.btn_select_path);
             this.Controls.Add(this.txt_output);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.txt_url);
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.txt_start);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btn_create);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainForm";
@@ -160,8 +142,6 @@
         private System.Windows.Forms.Button btn_create;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txt_start;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txt_url;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txt_output;
         private System.Windows.Forms.Button btn_select_path;
