@@ -25,13 +25,14 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <InstallUrl>http://autoupdate.sdcsoft.com.cn/files/qrcode/gl/</InstallUrl>
+    <TargetCulture>zh-CN</TargetCulture>
     <ProductName>锅炉控制器二维码生成工具</ProductName>
-    <PublisherName>sdcsoft.cn</PublisherName>
+    <PublisherName>sdcsoft.com.cn</PublisherName>
     <SuiteName>二维码快速生成打印工具</SuiteName>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>publish.htm</WebPage>
-    <ApplicationRevision>10</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationVersion>2.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -137,6 +138,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="qrc.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EnCoder\EnCoder.csproj">
+      <Project>{118df205-0f1d-4f22-87b6-7155385354a4}</Project>
+      <Name>EnCoder</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

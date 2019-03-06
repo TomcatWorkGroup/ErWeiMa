@@ -15,7 +15,7 @@ namespace QRCodeApp
             
         }
         public const string APP_DOWN_URL = "http://www.sdcsoft.com.cn/app/gl/gl.apk?id=";
-
+        private bool enCode = false;
         private long start, end;
         private string outputPath = string.Empty;
         private Graphics graphic;
@@ -88,7 +88,7 @@ namespace QRCodeApp
 
         private string DesCode(string data)
         {
-            return data;
+            return EnCoder.EnCoder.Encode(data);
         }
 
         private void btn_create_Click(object sender, EventArgs e)
@@ -115,7 +115,10 @@ namespace QRCodeApp
             {
                 string code = (start + i).ToString("D10");
 
-                var desCode = DesCode(code);
+                var desCode = code;
+                if(enCode)
+                    desCode = DesCode(code);
+
                 var qr = CreateQrImage(string.Format("{0}{1}", APP_DOWN_URL, desCode));
                 PrintQrImage(qr, i, desCode, code);
                 bitmap.Save(string.Format(@"{0}\{1}.jpg", outputPath, code), ImageFormat.Jpeg);
@@ -126,6 +129,8 @@ namespace QRCodeApp
             {
                 bitmap.Dispose();
                 graphic.Dispose();
+                bitmap = null;
+                graphic = null;
             }
 
             Text = str;
@@ -159,12 +164,15 @@ namespace QRCodeApp
             txt_end.Text = (start + 99).ToString("D10");
         }
 
-        private void rbtn_only_code_CheckedChanged(object sender, EventArgs e)
+        private void rBtn_NoCode_CheckedChanged(object sender, EventArgs e)
         {
+            enCode = rBtn_EnCode.Checked;
         }
 
-        private void rbtn_image_code_CheckedChanged(object sender, EventArgs e)
+        private void rBtn_EnCode_CheckedChanged(object sender, EventArgs e)
         {
+            enCode =rBtn_EnCode.Checked;
         }
+       
     }
 }

@@ -38,6 +38,9 @@
             this.fbd = new System.Windows.Forms.FolderBrowserDialog();
             this.label2 = new System.Windows.Forms.Label();
             this.txt_end = new System.Windows.Forms.TextBox();
+            this.rBtn_NoCode = new System.Windows.Forms.RadioButton();
+            this.rBtn_EnCode = new System.Windows.Forms.RadioButton();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_create
@@ -111,14 +114,50 @@
             this.txt_end.Size = new System.Drawing.Size(121, 21);
             this.txt_end.TabIndex = 11;
             // 
+            // rBtn_NoCode
+            // 
+            this.rBtn_NoCode.AutoSize = true;
+            this.rBtn_NoCode.Checked = true;
+            this.rBtn_NoCode.Location = new System.Drawing.Point(90, 108);
+            this.rBtn_NoCode.Name = "rBtn_NoCode";
+            this.rBtn_NoCode.Size = new System.Drawing.Size(59, 16);
+            this.rBtn_NoCode.TabIndex = 12;
+            this.rBtn_NoCode.TabStop = true;
+            this.rBtn_NoCode.Text = "不加密";
+            this.rBtn_NoCode.UseVisualStyleBackColor = true;
+            this.rBtn_NoCode.CheckedChanged += new System.EventHandler(this.rBtn_NoCode_CheckedChanged);
+            // 
+            // rBtn_EnCode
+            // 
+            this.rBtn_EnCode.AutoSize = true;
+            this.rBtn_EnCode.Location = new System.Drawing.Point(191, 108);
+            this.rBtn_EnCode.Name = "rBtn_EnCode";
+            this.rBtn_EnCode.Size = new System.Drawing.Size(47, 16);
+            this.rBtn_EnCode.TabIndex = 13;
+            this.rBtn_EnCode.Text = "加密";
+            this.rBtn_EnCode.UseVisualStyleBackColor = true;
+            this.rBtn_EnCode.CheckedChanged += new System.EventHandler(this.rBtn_EnCode_CheckedChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(13, 108);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(53, 12);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "编号加密";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(462, 159);
+            this.Controls.Add(this.rBtn_EnCode);
+            this.Controls.Add(this.rBtn_NoCode);
             this.Controls.Add(this.txt_end);
             this.Controls.Add(this.btn_select_path);
             this.Controls.Add(this.txt_output);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txt_start);
             this.Controls.Add(this.label2);
@@ -148,6 +187,9 @@
         private System.Windows.Forms.FolderBrowserDialog fbd;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txt_end;
+        private System.Windows.Forms.RadioButton rBtn_NoCode;
+        private System.Windows.Forms.RadioButton rBtn_EnCode;
+        private System.Windows.Forms.Label label3;
     }
 }
 
