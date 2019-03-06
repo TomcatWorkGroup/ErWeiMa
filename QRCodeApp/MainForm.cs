@@ -99,7 +99,11 @@ namespace QRCodeApp
                 return;
             }
 
-            
+            if (10 > txt_start.Text.Trim().Length)
+            {
+                MessageBox.Show("设备起始编号长度不足！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
 
             fileName = DateTime.Now.ToString("yyyyMMddHHmmss");
